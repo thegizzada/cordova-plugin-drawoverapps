@@ -3,6 +3,7 @@ package org.apache.cordova.overApps.Services;
 import android.app.Service;
 import android.content.Intent;
 import android.content.Context;
+import android.content.ComponentName; 
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -253,7 +254,6 @@ public class OverAppsService extends Service {
 		webSettings.setAppCacheMaxSize(10 * 1024 * 1024); // 10MB
 		webSettings.setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
 		webSettings.setAllowFileAccess(true);
-        webSettings.setAllowFileAccessFromFileURLs(true);
 		webSettings.setDomStorageEnabled(true);
 		webSettings.setAppCacheEnabled(true);
 		try {
@@ -423,9 +423,17 @@ public class OverAppsService extends Service {
 
 		@JavascriptInterface
 		public void openApp() {
-            Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+			Log.d("TAG", "Click");
+			stopSelf();
+			try {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(new ComponentName(getPackageName(), getPackageName() + ".MainActivity"));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

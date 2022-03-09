@@ -78,7 +78,7 @@ public class DrawOverApps extends CordovaPlugin {
 
 			if (checkDrawOverAppsPermission(activity)) {
 				if (options.getJSONObject(0).has("rawHTML")) {
-					openServiceWithHTMLfile(callbackContext, options.getJSONObject(0));
+					openServiceWithRawHTML(callbackContext, options.getJSONObject(0));
 					callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, "Draw Over Apps Should Start Successfully "));
 				}
 
@@ -96,7 +96,7 @@ public class DrawOverApps extends CordovaPlugin {
 
 	}
 
-	public void openServiceWithHTMLfile(CallbackContext callbackContext, JSONObject option) throws JSONException {
+	public void openServiceWithRawHTML(CallbackContext callbackContext, JSONObject option) throws JSONException {
 		if (option.has("rawHTML")) {
 			serviceParameters.setString(option.getString("rawHTML"), "rawHTML");
 		}
