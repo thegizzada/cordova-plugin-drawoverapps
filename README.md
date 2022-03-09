@@ -44,7 +44,7 @@ otherwise the `failed` is called instead.
 
 #### Options
 
- - **path**: file path to display as view content, this file should be located in  `WWW` root folder.
+ - **rawHTML**: raw string of HTML to display as view content.
  - **hasHead**: display over app head image which open the view up on click , by default true.
  - **dragToSide**: enable auto move of head to screen side after dragging stop , by default true.
  - **enableBackBtn**: enable hardware back button to close view, by default true.
@@ -57,7 +57,7 @@ otherwise the `failed` is called instead.
 #### Example
 
     var options = {
-          path: "test.html",          // file path to display as view content.
+          rawHTML: "<div>Raw HTML / CSS / JS.</div>",          // raw HTML string.
           hasHead: true,              // display over app head image which open the view up on click.
           dragToSide: false,          // enable auto move of head to screen side after dragging stop. 
           enableBackBtn: false,       // enable hardware back button to close view.
